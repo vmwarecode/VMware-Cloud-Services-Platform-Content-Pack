@@ -1,0 +1,555 @@
+{
+  "manifest": {
+    "name": "Cloud Services Platform (CSP) Logs",
+    "namespace": "Julie Roman",
+    "contentVersion": "1.0"
+  },
+  "queries": [
+    {
+      "id": "Julie Roman.csp_user_logins",
+      "name": "CSP User Logins",
+      "description": "",
+      "constraints": {
+        "operator": "AND",
+        "constraints": [
+          {
+            "operator": "STARTS_WITH",
+            "fieldName": "log_type",
+            "value": "csp",
+            "constraints": [],
+            "tags": []
+          },
+          {
+            "operator": "CONTAINS",
+            "fieldName": "type",
+            "value": "csp__user_login",
+            "constraints": [],
+            "tags": []
+          }
+        ],
+        "tags": []
+      },
+      "aggregationFunctions": [
+        {
+          "functionName": "COUNT"
+        }
+      ],
+      "groupByTerms": [
+        {
+          "fieldName": "timestamp",
+          "groupByType": "FIXED_BUCKET"
+        },
+        {
+          "fieldName": "user_account_identifier",
+          "groupByType": "EACH_VALUE"
+        }
+      ],
+      "isAnnotation": false,
+      "widget": {
+        "visualization": {
+          "type": "AREA",
+          "options": {}
+        }
+      }
+    },
+    {
+      "id": "Julie Roman.csprevoked_api_tokens",
+      "name": "CSP - Revoked API Tokens",
+      "description": "",
+      "constraints": {
+        "operator": "AND",
+        "constraints": [
+          {
+            "operator": "STARTS_WITH",
+            "fieldName": "log_type",
+            "value": "csp",
+            "constraints": [],
+            "tags": []
+          },
+          {
+            "operator": "CONTAINS",
+            "fieldName": "type",
+            "value": "csp__revoke_api_token",
+            "constraints": [],
+            "tags": []
+          }
+        ],
+        "tags": []
+      },
+      "aggregationFunctions": [
+        {
+          "functionName": "COUNT"
+        }
+      ],
+      "groupByTerms": [
+        {
+          "fieldName": "timestamp",
+          "groupByType": "FIXED_BUCKET"
+        },
+        {
+          "fieldName": "type",
+          "groupByType": "EACH_VALUE"
+        },
+        {
+          "fieldName": "originator_user_account_identifier",
+          "groupByType": "EACH_VALUE"
+        }
+      ],
+      "isAnnotation": false,
+      "widget": {
+        "visualization": {
+          "type": "AREA",
+          "options": {}
+        }
+      }
+    },
+    {
+      "id": "Julie Roman.csp_remove_user_from_org",
+      "name": "CSP Remove User from Org",
+      "description": "",
+      "constraints": {
+        "operator": "AND",
+        "constraints": [
+          {
+            "operator": "STARTS_WITH",
+            "fieldName": "log_type",
+            "value": "csp",
+            "constraints": [],
+            "tags": []
+          },
+          {
+            "operator": "CONTAINS",
+            "fieldName": "type",
+            "value": "\tcsp__remove_user_from_org",
+            "constraints": [],
+            "tags": []
+          }
+        ],
+        "tags": []
+      },
+      "aggregationFunctions": [
+        {
+          "functionName": "COUNT"
+        }
+      ],
+      "groupByTerms": [
+        {
+          "fieldName": "timestamp",
+          "groupByType": "FIXED_BUCKET"
+        },
+        {
+          "fieldName": "type",
+          "groupByType": "EACH_VALUE"
+        }
+      ],
+      "isAnnotation": false,
+      "widget": {
+        "visualization": {
+          "type": "AREA",
+          "options": {}
+        }
+      }
+    },
+    {
+      "id": "Julie Roman.csp_log_activity_types",
+      "name": "CSP log activity types",
+      "description": "",
+      "constraints": {
+        "operator": "AND",
+        "constraints": [
+          {
+            "operator": "STARTS_WITH",
+            "fieldName": "log_type",
+            "value": "csp",
+            "constraints": [],
+            "tags": []
+          },
+          {
+            "operator": "EXISTS",
+            "fieldName": "type",
+            "constraints": [],
+            "tags": []
+          }
+        ],
+        "tags": []
+      },
+      "aggregationFunctions": [
+        {
+          "functionName": "COUNT"
+        }
+      ],
+      "groupByTerms": [
+        {
+          "fieldName": "timestamp",
+          "groupByType": "FIXED_BUCKET"
+        },
+        {
+          "fieldName": "type",
+          "groupByType": "EACH_VALUE"
+        }
+      ],
+      "isAnnotation": false,
+      "widget": {
+        "visualization": {
+          "type": "AREA",
+          "options": {}
+        }
+      }
+    },
+    {
+      "id": "Julie Roman.csp_audit_logs",
+      "name": "CSP Audit Logs",
+      "description": "",
+      "constraints": {
+        "operator": "AND",
+        "constraints": [
+          {
+            "operator": "STARTS_WITH",
+            "fieldName": "log_type",
+            "value": "csp",
+            "constraints": [],
+            "tags": []
+          }
+        ],
+        "tags": []
+      },
+      "aggregationFunctions": [
+        {
+          "functionName": "COUNT"
+        }
+      ],
+      "groupByTerms": [
+        {
+          "fieldName": "timestamp",
+          "groupByType": "FIXED_BUCKET"
+        }
+      ],
+      "isAnnotation": false,
+      "widget": {
+        "visualization": {
+          "type": "AREA",
+          "options": {}
+        }
+      }
+    },
+    {
+      "id": "Julie Roman.csp_api_tokens_by_user",
+      "name": "CSP API Tokens by User",
+      "description": "",
+      "constraints": {
+        "operator": "AND",
+        "constraints": [
+          {
+            "operator": "STARTS_WITH",
+            "fieldName": "log_type",
+            "value": "csp",
+            "constraints": [],
+            "tags": []
+          },
+          {
+            "operator": "EXISTS",
+            "fieldName": "api_token_value",
+            "constraints": [],
+            "tags": []
+          }
+        ],
+        "tags": []
+      },
+      "aggregationFunctions": [
+        {
+          "functionName": "COUNT"
+        }
+      ],
+      "groupByTerms": [
+        {
+          "fieldName": "timestamp",
+          "groupByType": "FIXED_BUCKET"
+        },
+        {
+          "fieldName": "user_account_identifier",
+          "groupByType": "EACH_VALUE"
+        }
+      ],
+      "isAnnotation": false,
+      "widget": {
+        "visualization": {
+          "type": "LINE",
+          "options": {}
+        }
+      }
+    },
+    {
+      "id": "Julie Roman.csp_usage_by_service",
+      "name": "CSP Usage by Service",
+      "description": "",
+      "constraints": {
+        "operator": "AND",
+        "constraints": [
+          {
+            "operator": "STARTS_WITH",
+            "fieldName": "log_type",
+            "value": "csp",
+            "constraints": [],
+            "tags": []
+          }
+        ],
+        "tags": []
+      },
+      "aggregationFunctions": [
+        {
+          "functionName": "COUNT"
+        }
+      ],
+      "groupByTerms": [
+        {
+          "fieldName": "timestamp",
+          "groupByType": "FIXED_BUCKET"
+        },
+        {
+          "fieldName": "client_service_name",
+          "groupByType": "EACH_VALUE"
+        }
+      ],
+      "isAnnotation": false,
+      "widget": {
+        "visualization": {
+          "type": "AREA",
+          "options": {}
+        }
+      }
+    },
+    {
+      "id": "Julie Roman.csp_user_logout",
+      "name": "CSP User Logout",
+      "description": "",
+      "constraints": {
+        "operator": "AND",
+        "constraints": [
+          {
+            "operator": "CONTAINS",
+            "fieldName": "log_type",
+            "value": "csp*",
+            "constraints": [],
+            "tags": []
+          },
+          {
+            "operator": "STARTS_WITH",
+            "fieldName": "type",
+            "value": "csp__user_logout",
+            "constraints": [],
+            "tags": []
+          }
+        ],
+        "tags": []
+      },
+      "aggregationFunctions": [
+        {
+          "functionName": "COUNT"
+        }
+      ],
+      "groupByTerms": [
+        {
+          "fieldName": "timestamp",
+          "groupByType": "FIXED_BUCKET"
+        },
+        {
+          "fieldName": "user_account_identifier",
+          "groupByType": "EACH_VALUE"
+        }
+      ],
+      "isAnnotation": false,
+      "widget": {
+        "visualization": {
+          "type": "AREA",
+          "options": {}
+        }
+      }
+    }
+  ],
+  "extractedFields": [],
+  "alerts": [
+    {
+      "id": "Julie Roman.cspuser_removed_from_org",
+      "triggerDefinitionId": "Julie Roman.cspuser_removed_from_org",
+      "queryDefinitionId": "Julie Roman.csp_remove_user_from_org",
+      "orgId": "2acf4023-1778-4e6a-a892-7635b8c7f4fb",
+      "name": "CSP - User Removed from Org",
+      "description": "User removed from Cloud Services Platform",
+      "period": 300000,
+      "threshold": 0,
+      "operator": "GREATER_THAN"
+    }
+  ],
+  "dashboards": [
+    {
+      "id": "Julie Roman.csp_logs",
+      "name": "CSP Logs",
+      "widgetList": [
+        {
+          "name": "CSP Audit Logs",
+          "description": "",
+          "queryDefinitionLink": "Julie Roman.csp_audit_logs",
+          "widgetType": "FIELD_TABLE",
+          "widgetPlacement": {
+            "minHeight": 3,
+            "x": 0,
+            "width": 12,
+            "y": 0,
+            "minWidth": 3,
+            "height": 4
+          },
+          "visualization": {
+            "type": "AREA",
+            "options": {}
+          },
+          "widgetProperties": {
+            "fieldTableColumns": [
+              "ingest_timestamp",
+              "text",
+              "hostname",
+              "appname"
+            ]
+          }
+        },
+        {
+          "name": "CSP API Tokens by User",
+          "description": "",
+          "queryDefinitionLink": "Julie Roman.csp_api_tokens_by_user",
+          "widgetType": "CHART",
+          "widgetPlacement": {
+            "minHeight": 3,
+            "x": 4,
+            "width": 4,
+            "y": 12,
+            "minWidth": 3,
+            "height": 4
+          },
+          "visualization": {
+            "type": "AREA",
+            "options": {}
+          },
+          "widgetProperties": {}
+        },
+        {
+          "name": "CSP - Revoked API Tokens",
+          "description": "",
+          "queryDefinitionLink": "Julie Roman.csprevoked_api_tokens",
+          "widgetType": "CHART",
+          "widgetPlacement": {
+            "minHeight": 3,
+            "x": 8,
+            "width": 4,
+            "y": 12,
+            "minWidth": 3,
+            "height": 4
+          },
+          "visualization": {
+            "type": "AREA",
+            "options": {}
+          },
+          "widgetProperties": {}
+        },
+        {
+          "name": "CSP log activity types",
+          "description": "",
+          "queryDefinitionLink": "Julie Roman.csp_log_activity_types",
+          "widgetType": "CHART",
+          "widgetPlacement": {
+            "minHeight": 3,
+            "x": 6,
+            "width": 6,
+            "y": 8,
+            "minWidth": 3,
+            "height": 4
+          },
+          "visualization": {
+            "type": "LINE",
+            "options": {
+              "colorTheme": "[\"#8A4DD7\",\"#00AB9A\",\"#F1428A\",\"#FE9200\",\"#7594B8\",\"#00AEE4\"]"
+            }
+          },
+          "widgetProperties": {}
+        },
+        {
+          "name": "CSP Remove User from Org",
+          "description": "",
+          "queryDefinitionLink": "Julie Roman.csp_remove_user_from_org",
+          "widgetType": "CHART",
+          "widgetPlacement": {
+            "minHeight": 3,
+            "x": 0,
+            "width": 4,
+            "y": 12,
+            "minWidth": 3,
+            "height": 4
+          },
+          "visualization": {
+            "type": "AREA",
+            "options": {}
+          },
+          "widgetProperties": {}
+        },
+        {
+          "name": "CSP Usage by Service",
+          "description": "",
+          "queryDefinitionLink": "Julie Roman.csp_usage_by_service",
+          "widgetType": "CHART",
+          "widgetPlacement": {
+            "minHeight": 3,
+            "x": 0,
+            "width": 6,
+            "y": 8,
+            "minWidth": 3,
+            "height": 4
+          },
+          "visualization": {
+            "type": "LINE",
+            "options": {
+              "colorTheme": "[\"#8A4DD7\",\"#00AB9A\",\"#F1428A\",\"#FE9200\",\"#7594B8\",\"#00AEE4\"]"
+            }
+          },
+          "widgetProperties": {}
+        },
+        {
+          "name": "CSP User Logins",
+          "description": "",
+          "queryDefinitionLink": "Julie Roman.csp_user_logins",
+          "widgetType": "CHART",
+          "widgetPlacement": {
+            "minHeight": 3,
+            "x": 0,
+            "width": 6,
+            "y": 4,
+            "minWidth": 3,
+            "height": 4
+          },
+          "visualization": {
+            "type": "COLUMN",
+            "options": {}
+          },
+          "widgetProperties": {}
+        },
+        {
+          "name": "CSP User Logout",
+          "description": "",
+          "queryDefinitionLink": "Julie Roman.csp_user_logout",
+          "widgetType": "CHART",
+          "widgetPlacement": {
+            "minHeight": 3,
+            "x": 6,
+            "width": 6,
+            "y": 4,
+            "minWidth": 3,
+            "height": 4
+          },
+          "visualization": {
+            "type": "COLUMN",
+            "options": {}
+          },
+          "widgetProperties": {}
+        }
+      ]
+    }
+  ],
+  "agentGroups": []
+}
